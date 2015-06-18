@@ -214,7 +214,7 @@ module AWS
       def self.generate_custom_policy(resource, options)
         conditions = { 'DateLessThan' => { 'AWS:EpochTime' => epoch_time(options[:expires]) } }
         conditions['DateGreaterThan'] = { 'AWS:EpochTime' => epoch_time(options[:starting]) } if options[:starting]
-        conditions['IpAddress'] = { 'AWS:SourceIp' => option[:ip_range] } if options[:ip_range]
+        conditions['IpAddress'] = { 'AWS:SourceIp' => options[:ip_range] } if options[:ip_range]
         {
           'Statement' => [{
             'Resource' => resource,
